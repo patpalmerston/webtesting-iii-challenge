@@ -18,5 +18,38 @@ describe('dashboard component', () => {
     expect(mockFn).toHaveBeenCalled();
   })
 
+  it('check open button call', () => {
+    const mockFn = jest.fn();
+    const { getByText } = render(<Controls closed={true} toggleClosed={mockFn} />)
+
+    const openButton = getByText('Open Gate');
+
+    fireEvent.click(openButton);
+
+    expect(mockFn).toHaveBeenCalled();
+  })
+
+  it('check unlock button call', () => {
+    const mockFn = jest.fn();
+    const { getByText } = render(<Controls closed={true} locked={true} toggleLocked={mockFn} />)
+
+    const unlockButton = getByText('Unlock Gate');
+
+    fireEvent.click(unlockButton);
+
+    expect(mockFn).toHaveBeenCalled();
+  })
+
+  it('check lock button call', () => {
+    const mockFn = jest.fn();
+    const { getByText } = render(<Controls closed={true} locked={false} toggleLocked={mockFn} />)
+
+    const lockButton = getByText('Lock Gate');
+
+    fireEvent.click(lockButton);
+
+    expect(mockFn).toHaveBeenCalled();
+  })
+ 
 
 })
